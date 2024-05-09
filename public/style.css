@@ -137,6 +137,11 @@ div input{
     border: none;
     color:white;
 }
+button{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
 
 
 

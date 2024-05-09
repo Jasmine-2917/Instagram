@@ -45,6 +45,14 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
   </head>
   <body>
     <div class="container">
@@ -200,7 +208,10 @@
           </div>
           <div class="icon">
             <span class="material-symbols-outlined"> add_box </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span> Create</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="http://localhost:8080/instagram/new"
+              ><span style="color: white; margin-left: -80px"> Create</span></a
+            >
           </div>
           <div class="icon">
             <span class="material-symbols-outlined"> account_circle </span>
@@ -350,6 +361,7 @@
                 </div>
               </div>
             </div>
+            <% for (post of posts){ %>
             <div class="post">
               <div class="post-heading">
                 <img
@@ -360,13 +372,30 @@
                     border-radius: 50%;
                     border: 2px solid rgb(218, 109, 50);
                     margin: 0.25rem;
-                    object-fit: cover;
                   "
                   alt=""
                 />
                 <span><%= post.username %></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="material-symbols-outlined"> more_horiz </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <form
+                  method="post"
+                  action="/instagram/<%= post.id %>?_method=DELETE"
+                >
+                  <button>
+                    <span class="material-symbols-outlined" style="color: grey">
+                      delete
+                    </span>
+                  </button>
+                </form>
+
+                <a
+                  href="http://localhost:8080/instagram/<%= post.id %>/edit"
+                  style="color: white; margin-left: -55px"
+                >
+                  <span style="color: white" class="material-symbols-outlined">
+                    edit
+                  </span>
+                </a>
               </div>
               <div class="post-content">
                 <div class="post-image">
@@ -388,7 +417,7 @@
                   </span>
                   <br />
                   <span style="font-size: 1rem"
-                    ><b><%= post.username %> - </b><%= post.caption %></span
+                    ><b><%= post.username %> - </b><%= post.content %></span
                   >
                   <br /><br />
                   <input
@@ -399,6 +428,7 @@
                 </div>
               </div>
             </div>
+            <% } %>
           </div>
         </div>
         <div class="right-pane">
